@@ -1,4 +1,6 @@
-package com.tp.rational;
+package com.tp.imt;
+
+import com.tp.imt.UndefinedRational;
 
 public class Rational {
 	
@@ -44,14 +46,21 @@ public class Rational {
 	}
 	
 	public static Rational reduce (int numerator , int denominator) {
-		int num, den;
+		int num = numerator, den = denominator;
 		int gcd = gcd(numerator, denominator);
+		Rational result = new Rational();
 		while (gcd != 1) {
-			num = numerator / gcd;
-			den = denominator / gcd;
+			num = num / gcd;
+			den = den / gcd;
 			gcd = gcd(num, den);
 		}
-		return new Rational(num, den);
+		try{
+			result.setNumerator(num);
+			result.setDenominator(den);
+		} catch (UndefinedRational err) {
+			System.out.println("Error setting denominator " + den);
+		}
+		return result;
 	}
 
 	private static int gcd(int a, int b) {
@@ -78,7 +87,7 @@ public class Rational {
 	public static void main (String args[]) {
 		
 		try {
-			Rational r = new Rational(3,2);
+			Rational r = new Rational(4,2);
 			Rational r1 = new Rational(4,1);
 			
 			System.out.println("r = " + r.toString());

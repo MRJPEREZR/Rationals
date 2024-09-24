@@ -1,4 +1,4 @@
-package com.tp.rational;
+package com.tp.imt;
 
 public class UndefinedRational extends Exception {
 
