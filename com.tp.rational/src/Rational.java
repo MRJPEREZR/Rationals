@@ -1,3 +1,5 @@
+package com.tp.rational;
+
 public class Rational {
 	
 	private int numerator;
