@@ -35,32 +35,28 @@ class Rational {
 	}
 	
 	public static Rational add (Rational r1, Rational r2) {
-		Rational result = new Rational();
 		int numerator = r1.getNumerator() * r2.getDenominator() + r1.getDenominator() * r2.getNumerator();
 		int denominator = r1.getDenominator() * r2.getDenominator();
-		try {
-			result.setNumerator(numerator);
-			result.setDenominator(denominator);
-		}catch(UndefinedRational err) {
-			System.out.println(err.getMessage());
-		}
+		Rational result = reduce(numerator, denominator);
 		return result;
-	}
-	
-	private static int gcd(int a, int b) {
-		for(int i = Math.min(a, b); i > 0; i--){
-		if(a % i == 0 && b % i == 0) return i;
-		}
-		return 1;
 	}
 	
 	public static Rational reduce (int numerator , int denominator) {
+		int num, den;
 		int gcd = gcd(numerator, denominator);
-		Rational result = new Rational();
-		
-		
-		return result;
-		
+		while (gcd != 1) {
+			num = numerator / gcd;
+			den = denominator / gcd;
+			gcd = gcd(num, den);
+		}
+		return new Rational(num, den);
+	}
+
+	private static int gcd(int a, int b) {
+		for(int i = Math.min(a, b); i > 0; i--){
+			if(a % i == 0 && b % i == 0) return i;
+		}
+		return 1;
 	}
 	
 	@Override
@@ -102,9 +98,5 @@ class Rational {
 		}catch (UndefinedRational err) {
 			System.out.println(err.getMessage());
 		}
-		
-		
-		
-			
 	}
 }
