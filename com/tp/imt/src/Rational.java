@@ -1,7 +1,3 @@
-package com.tp.imt;
-
-import com.tp.imt.UndefinedRational;
-
 public class Rational {
 	
 	private int numerator;
